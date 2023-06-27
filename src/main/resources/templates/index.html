@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{master.html}">
+<head>
+<meta charset="UTF-8">
+<title>Inicio</title>
+</head>
+<body>
+
+  <div layout:fragment="content">
+	<div class="bg-light p-5 rounded">
+	   <h1 class="display-1 text-primary">Bienvenido a TourPerú</h1>
+	   <h2>Disfruta de tus Lugares favoritos</h2>
+	</div>	
+	
+	<h3 class="text-danger mt-5">Lugares Turisticos</h3>
+	
+	<div class="row">
+	    <div class="col-md-3 my-5" th:each="lugarTuristico : ${ultimosLugaresTuristicos}" th:object="${lugarTuristico}">
+	       <a th:href="@{/lugaresTuristicos/{idlugTuristico}(idlugTuristico=*{idlugTuristico})}" class="card shadow-lg" style="text-decoration:none;">
+	       <img th:src="@{/assets/{filename}(filename=*{rutaPortada})}" th:alt="*{nomTuristico}" class="card-img-top">
+	       <div class="card-body">
+	          <h2 class="card-title fs-4" th:text="*{nomTuristico}"></h2>
+	          <h2 class="card-title fs-6" th:each="ciudad : *{ciudades}" th:text="${ciudad.ciudad}"></h2>
+	          
+	          <h2 class="card-title fs-6"  style="color: #888888;" th:text="*{precioTuristico}"></h2>
+	          <p th:text="|TOUR: *{#temporals.format(fechaTuristico,'dd/MM/yyyy')}|"  style="color: #FF0000; font-weight: bold;"></p>
+	          
+	       </div>
+	       </a>
+	    </div>
+	</div>
+	
+	<h3 class="text-danger mt-5">Guias</h3>
+	
+	<div class="row">
+	    <div class="col-md-3 my-5" th:each="guia : ${ultimosGuias}" th:object="${guia}">
+	       <a th:href="@{/guias/{idguia}(idguia=*{idguia})}" class="card shadow-lg" style="text-decoration:none;">
+	       <img th:src="@{/assets/{filename}(filename=*{rutaPortada})}" th:alt="*{nomGuia}" class="card-img-top">
+	       <div class="card-body">
+	          <h2 class="card-title fs-4" th:text="*{nomGuia}"></h2>
+	          
+						<span class="badge rounded-pill bg-light text-dark me-1"
+							th:each="lenguaje : *{lenguajes}" th:text="${lenguaje.lenguaje}">
+						</span>
+						
+					
+	          
+	          <h2 class="card-title fs-6"  style="color: #888888;" th:text="*{precioGuia}"></h2>
+	          <p th:text="|Trabaja desde: *{#temporals.format(fechaGuia,'dd/MM/yyyy')}|"  style="color: #FF0000; font-weight: bold;"></p>
+	          
+	       </div>
+	       </a>
+	    </div>
+	</div>
+	
+	
+	<h3 class="text-danger mt-5">Hospedajes</h3>
+	
+	<div class="row">
+	    <div class="col-md-3 my-5" th:each="hospedaje : ${ultimosHospedajes}" th:object="${hospedaje}">
+	       <a th:href="@{/hospedajes/{idhospedaje}(idhospedaje=*{idhospedaje})}" class="card shadow-lg" style="text-decoration:none;">
+	       <img th:src="@{/assets/{filename}(filename=*{rutaPortada})}" th:alt="*{nomHospedaje}" class="card-img-top">
+	       <div class="card-body">
+	          <h2 class="card-title fs-4" th:text="*{nomHospedaje}"></h2>
+	          
+						<span class="badge rounded-pill bg-light text-dark me-1"
+							th:each="servicio : *{servicios}" th:text="${servicio.servicio}">
+						</span>
+						
+					
+	          
+	          <h2 class="card-title fs-6"  style="color: #888888;" th:text="*{precioHospedaje}"></h2>
+	          <p th:text="|Integrado el: *{#temporals.format(fechaHospedaje,'dd/MM/yyyy')}|"  style="color: #FF0000; font-weight: bold;"></p>
+	          
+	       </div>
+	       </a>
+	    </div>
+	</div>
+	
+	
+  </div> 
+</body>
+</html>

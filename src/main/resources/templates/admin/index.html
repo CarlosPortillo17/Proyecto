@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{master.html}">
+<head>
+<meta charset="UTF-8">
+<title>Administrar Lugares Turisticos</title>
+</head>
+<body>
+
+  <div layout:fragment="content">
+		<h2>Lugares Turisticos</h2>
+		<div>
+   <form th:action="@{/admin/lugaresTuristicos/buscar}" method="get">
+    <div class="input-group mb-3">
+        <label for="ciudad"></label>
+        <input type="text" class="form-control" id="ciudad" name="ciudad" placeholder="Buscar por Ciudad">
+    	<button type="submit" class="btn btn-primary">Buscar</button>
+    </div>
+    
+</form>
+
+
+</div>
+		<div class="text-end">
+			<a href="/admin/lugaresTuristicos/nuevo" class="btn btn-primary mb-3">
+				Agregar Lugares Turisticos </a>
+		</div>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th></th>
+					<th>Lugar Turistico</th>
+					<th>Fecha de Turismo</th>
+					<th>Precio</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="lugarTuristico : ${lugaresTuristicos}" th:object="${lugarTuristico}">
+					<td style="width:150px;">
+					   <a th:href="@{/assets/{filename}(filename=*{rutaPortada})}" data-fancybox>
+					      <img th:src="@{/assets/{filename}(filename=*{rutaPortada})}" alt="" class="img-thumbnail w-100">
+					   </a>
+					</td>
+					<td>
+						<div th:text="*{nomTuristico}" class="fs-5 fw-bold"></div>
+						<p th:each="horario : *{horarios}" th:text="${horario.horario}"></p>
+						<div>
+							<span class="badge rounded-pill bg-light text-dark me-1"
+								th:each="ciudad : *{ciudades}" th:text="${ciudad.ciudad}">
+							</span>
+						</div>
+					</td>
+					<td th:text="*{#temporals.format(fechaTuristico,'dd/MM/yyyy')}"></td>
+					<td th:text="*{precioTuristico}" style="color: #FF0000; "></td>
+					<td class="text-end">
+					
+  <a th:href="@{/admin/lugaresTuristicos/{idlugTuristico}/editar(idlugTuristico=*{idlugTuristico})}" class="btn btn-primary">Editar</a>
+  <a href="javascript:void(0)" class="text-ligth ms-3 btn btn-danger" th:onclick="'eliminarLugarTuristico(' + *{idlugTuristico} +')'">Eliminar</a>
+  <form th:id="'eliminarLugarTuristicoForm' + *{idlugTuristico}" th:action="@{/admin/lugaresTuristicos/{idlugTuristico}/eliminar(idlugTuristico=*{idlugTuristico})}" method="post" class="d-none">
+  </form>
+</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="row mt-5" th:with="page=${lugaresTuristicos}">
+		   <div class="col-sm-6">
+		      <div sd:pagination-sumary>
+		      </div>
+		      <div class="col-sm-6">
+		         <nav>
+		            <ul class="pagination" sd:pagination="full"></ul>
+		         </nav>
+		      </div>
+		   </div>
+		</div>
+  </div> 
+  
+  <div layout:fragment="scripts">
+      <script>
+         function eliminarLugarTuristico(idlugTuristico){
+        	 if(!confirm('¿Estás seguro de eliminar este Lugar Turistico?')){
+        		 return;
+        	 }
+        	 $('#eliminarLugarTuristicoForm' + idlugTuristico).submit();
+         }
+      </script>
+  </div>
+	
+</body>
+</html>

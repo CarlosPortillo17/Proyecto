@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es"
+    xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+
+	<div layout:fragment="form">
+		<br>
+		<form action="" method="post" th:object="${lugarTuristico}"
+			enctype="multipart/form-data">
+			<div class="mb-3">
+    <label for="desTuristico" class="form-label">Descripción :</label>
+    <textarea id="desTuristico" placeholder="Digite la Descripción del Lugar Turistico"
+              class="form-control" th:field="*{desTuristico}"></textarea>
+    <div class="invalid-feedback" th:if="${#fields.hasErrors('desTuristico')}"
+         th:errors="*{desTuristico}"></div>
+</div>
+			
+			<div class="mb-3">
+				<label for="nomTuristico" class="form-label">Nombre Turistico : </label> <input
+					type="text" id="nomTuristico" placeholder="Digite el Nombre Turistico"
+					class="form-control" th:field="*{nomTuristico}">
+				<div class="invalid-feedback" th:if="${#fields.hasErrors('nomTuristico')}"
+					th:errors="*{nomTuristico}"></div>
+			</div>
+
+<div class="mb-3">
+  <label for="horarios" class="form-label">Horarios:</label>
+  <select id="horarios" class="form-control" th:field="*{horarios}">
+    <option value="">Seleccione Horario</option>
+    <option th:each="horario : ${horarios}" th:value="${horario.id}" th:text="${horario.horario}"></option>
+  </select>
+  <div class="invalid-feedback" th:if="${#fields.hasErrors('horarios')}" th:errors="*{horarios}"></div>
+</div>
+
+			
+
+			<div class="mb-3">
+				<label for="fechaTuristico" class="form-label">Fecha de
+					Turismo : </label> <input type="date" id="fechaTuristico"
+					placeholder="Digite la fecha de Turismo" class="form-control"
+					th:field="*{fechaTuristico}">
+				<div class="invalid-feedback"
+					th:if="${#fields.hasErrors('fechaTuristico')}"
+					th:errors="*{fechaTuristico}"></div>
+			</div>
+			
+			<div class="mb-3">
+  <label for="precioTuristico" class="form-label">Precio de Turismo:</label>
+  <input type="text" id="precioTuristico"
+    placeholder="Colocar el Precio Ejemplo: S/ 1000 o S/ 1000,00"
+    class="form-control"
+    th:field="*{precioTuristico}"
+    pattern="^S/\s?\d+(.\d{1,2})?$"
+    title="Ingrese un número válido o formato de precio (ejemplo: S/ 1000 o S/ 1000,00)">
+  <div class="invalid-feedback"
+    th:if="${#fields.hasErrors('precioTuristico')}"
+    th:errors="*{precioTuristico}"></div>
+</div>
+			
+			
+			<div class="mb-3">
+				<label for="youtubeTrailerId" class="form-label">Youtube
+					Trailer ID : </label> <input type="text" id="youtubeTrailerId"
+					placeholder="Digite el Youtube Trailer ID" class="form-control"
+					th:field="*{youtubeTrailerId}">
+				<div class="invalid-feedback"
+					th:if="${#fields.hasErrors('youtubeTrailerId')}"
+					th:errors="*{youtubeTrailerId}"></div>
+			</div>
+			<div class="mb-3">
+				<label for="portada" class="form-label">Imagen : </label> <input
+					type="file" name="portada" id="portad" class="form-control"
+					th:field="*{portada}">
+				<div class="invalid-feedback"
+					th:if="${#fields.hasErrors('portada')}" th:errors="*{portada}"></div>
+			</div>
+			
+			
+			<div class="mb-3">
+  <label for="ciudades" class="form-label">Ciudad:</label>
+  <select id="ciudades" class="form-control" th:field="*{ciudades}">
+    <option value="">Seleccione una ciudad</option>
+    <option th:each="ciudad : ${ciudades}" th:value="${ciudad.id}" th:text="${ciudad.ciudad}"></option>
+  </select>
+  <div class="invalid-feedback" th:if="${#fields.hasErrors('ciudades')}" th:errors="*{ciudades}"></div>
+</div>
+
+			<div class="text-end">
+				<button type="submit" class="btn btn-primary">Guardar</button>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

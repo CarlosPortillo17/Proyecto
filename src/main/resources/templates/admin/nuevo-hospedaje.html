@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es"
+    xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{master.html}">
+<head>
+<meta charset="UTF-8">
+<title>Registro de Hospedajes</title>
+</head>
+<body>
+<div layout:fragment="content">
+		<h2>Registro de Hospedajes</h2>
+		<br>
+		<form action="" method="post" th:object="${hospedaje}"
+			enctype="multipart/form-data">
+			<div class="mb-3">
+    <label for="desHospedaje" class="form-label">Descripción :</label>
+    <textarea id="desHospedaje" placeholder="Digite la Descripción del Hospedaje"
+              class="form-control" th:field="*{desHospedaje}"></textarea>
+    <div class="invalid-feedback" th:if="${#fields.hasErrors('desHospedaje')}"
+         th:errors="*{desHospedaje}"></div>
+</div>
+			
+			<div class="mb-3">
+				<label for="nomHospedaje" class="form-label">Nombre Hospedaje : </label> <input
+					type="text" id="nomHospedaje" placeholder="Digite Nombre"
+					class="form-control" th:field="*{nomHospedaje}">
+				<div class="invalid-feedback" th:if="${#fields.hasErrors('nomHospedaje')}"
+					th:errors="*{nomHospedaje}"></div>
+			</div>
+			
+			<div class="mb-3">
+				<label for="dirHospedaje" class="form-label">Dirección Hospedaje : </label> <input
+					type="text" id="dirHospedaje" placeholder="Digite Dirección"
+					class="form-control" th:field="*{dirHospedaje}">
+				<div class="invalid-feedback" th:if="${#fields.hasErrors('dirHospedaje')}"
+					th:errors="*{dirHospedaje}"></div>
+			</div>
+			
+			
+	
+<div class="mb-3">
+  <label for="horarios" class="form-label">Horarios:</label>
+  <select id="horarios" class="form-control" th:field="*{horarios}">
+    <option value="">Seleccione Horario</option>
+    <option th:each="horario : ${horarios}" th:value="${horario.id}" th:text="${horario.horario}"></option>
+  </select>
+  <div class="invalid-feedback" th:if="${#fields.hasErrors('horarios')}" th:errors="*{horarios}"></div>
+</div>
+			
+			
+				<div class="mb-3">
+  <label for="precioHospedaje" class="form-label">Precio:</label>
+  <input type="text" id="precioHospedaje"
+    placeholder="Colocar el Precio Ejemplo: S/ 1000 o S/ 1000,00"
+    class="form-control"
+    th:field="*{precioHospedaje}"
+    pattern="^S/\s?\d+(.\d{1,2})?$"
+    title="Ingrese un número válido o formato de precio (ejemplo: S/ 1000 o S/ 1000,00)">
+  <div class="invalid-feedback"
+    th:if="${#fields.hasErrors('precioHospedaje')}"
+    th:errors="*{precioHospedaje}"></div>
+</div>
+			
+			
+			
+			<div class="mb-3">
+				<label for="fechaHospedaje" class="form-label">Fecha de Integración : </label> <input type="date" id="fechaHospedaje"
+					placeholder="Digite la fecha" class="form-control"
+					th:field="*{fechaHospedaje}">
+				<div class="invalid-feedback"
+					th:if="${#fields.hasErrors('fechaHospedaje')}"
+					th:errors="*{fechaHospedaje}"></div>
+			</div>
+			
+			
+			
+			
+			
+			
+			<div class="mb-3">
+  <label for="puntos" class="form-label">Puntos:</label>
+  <select id="puntos" class="form-control" th:field="*{puntos}">
+    <option value="">Seleccione Puntos</option>
+    <option th:each="punto : ${puntos}" th:value="${punto.id}" th:text="${punto.punto}"></option>
+  </select>
+  <div class="invalid-feedback" th:if="${#fields.hasErrors('puntos')}" th:errors="*{puntos}"></div>
+</div>
+
+
+
+			<div class="mb-3">
+				<label for="youtubeTrailerId" class="form-label">Youtube
+					Trailer ID : </label> <input type="text" id="youtubeTrailerId"
+					placeholder="Digite el Youtube Trailer ID" class="form-control"
+					th:field="*{youtubeTrailerId}">
+				<div class="invalid-feedback"
+					th:if="${#fields.hasErrors('youtubeTrailerId')}"
+					th:errors="*{youtubeTrailerId}"></div>
+			</div>
+			
+			<div class="mb-3">
+				<label for="portada" class="form-label">Imagen : </label> <input
+					type="file" name="portada" id="portad" class="form-control"
+					th:field="*{portada}">
+				<div class="invalid-feedback"
+					th:if="${#fields.hasErrors('portada')}" th:errors="*{portada}"></div>
+			</div>
+			
+			<div class="mb-3">
+				<label for="servicios" class="form-label">Servicios : </label> <select
+					id="servicios" class="form-control" th:field="*{servicios}" multiple>
+					<option th:each="servicio : ${servicios}" th:value="${servicio.id}"
+						th:text="${servicio.servicio}"></option>
+				</select>
+				<div class="invalid-feedback"
+					th:if="${#fields.hasErrors('servicios')}" th:errors="*{servicios}"></div>
+			</div>
+			
+			
+			
+
+			<div class="text-end">
+				<button type="submit" class="btn btn-primary">Guardar</button>
+			</div>
+		</form>
+	</div>
+
+</body>
+</html>

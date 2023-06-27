@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es"
+    xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{master.html}">
+<head>
+<meta charset="UTF-8">
+<title>Registro de Guias</title>
+</head>
+<body>
+<div layout:fragment="content">
+		<h2>Registro de Guias</h2>
+		<br>
+		<form action="" method="post" th:object="${guia}"
+			enctype="multipart/form-data">
+			<div class="mb-3">
+    <label for="desGuia" class="form-label">Descripción :</label>
+    <textarea id="desGuia" placeholder="Digite la Descripción del Guia"
+              class="form-control" th:field="*{desGuia}"></textarea>
+    <div class="invalid-feedback" th:if="${#fields.hasErrors('desGuia')}"
+         th:errors="*{desGuia}"></div>
+</div>
+			
+			<div class="mb-3">
+				<label for="nomGuia" class="form-label">Nombres Guia : </label> <input
+					type="text" id="nomGuia" placeholder="Digite Nombres"
+					class="form-control" th:field="*{nomGuia}">
+				<div class="invalid-feedback" th:if="${#fields.hasErrors('nomGuia')}"
+					th:errors="*{nomGuia}"></div>
+			</div>
+			
+			<div class="mb-3">
+				<label for="apellidoGuia" class="form-label">Apellidos Guia : </label> <input
+					type="text" id="apellidoGuia" placeholder="Digite Apellidos"
+					class="form-control" th:field="*{apellidoGuia}">
+				<div class="invalid-feedback" th:if="${#fields.hasErrors('apellidoGuia')}"
+					th:errors="*{apellidoGuia}"></div>
+			</div>
+			
+			<div class="mb-3">
+				<label for="edadGuia" class="form-label">Edad Guia : </label> <input
+					type="text" id="edadGuia" placeholder="Digite Edad"
+					class="form-control" th:field="*{edadGuia}">
+				<div class="invalid-feedback" th:if="${#fields.hasErrors('edadGuia')}"
+					th:errors="*{edadGuia}"></div>
+			</div>
+
+<div class="mb-3">
+  <label for="nacionalidades" class="form-label">Nacionalidad:</label>
+  <select id="nacionalidades" class="form-control" th:field="*{nacionalidades}">
+    <option value="">Seleccione Nacionalidad</option>
+    <option th:each=" nacionalidad : ${nacionalidades}" th:value="${nacionalidad.id}" th:text="${nacionalidad.nacionalidad}"></option>
+  </select>
+  <div class="invalid-feedback" th:if="${#fields.hasErrors('nacionalidades')}" th:errors="*{nacionalidades}"></div>
+</div>
+
+<div class="mb-3">
+				<label for="correoGuia" class="form-label">Email Guia : </label> <input
+					type="text" id="correoGuia" placeholder="Digite Correo"
+					class="form-control" th:field="*{correoGuia}">
+				<div class="invalid-feedback" th:if="${#fields.hasErrors('correoGuia')}"
+					th:errors="*{correoGuia}"></div>
+			</div>
+			
+			<div class="mb-3">
+				<label for="celularGuia" class="form-label">N° Celular Guia : </label> <input
+					type="text" id="celularGuia" placeholder="Digite N° Celular"
+					class="form-control" th:field="*{celularGuia}">
+				<div class="invalid-feedback" th:if="${#fields.hasErrors('celularGuia')}"
+					th:errors="*{celularGuia}"></div>
+			</div>
+
+<div class="mb-3">
+  <label for="horarios" class="form-label">Horarios:</label>
+  <select id="horarios" class="form-control" th:field="*{horarios}">
+    <option value="">Seleccione Horario</option>
+    <option th:each="horario : ${horarios}" th:value="${horario.id}" th:text="${horario.horario}"></option>
+  </select>
+  <div class="invalid-feedback" th:if="${#fields.hasErrors('horarios')}" th:errors="*{horarios}"></div>
+</div>
+
+
+<div class="mb-3">
+  <label for="puntos" class="form-label">Puntos:</label>
+  <select id="puntos" class="form-control" th:field="*{puntos}">
+    <option value="">Seleccione Puntos</option>
+    <option th:each="punto : ${puntos}" th:value="${punto.id}" th:text="${punto.punto}"></option>
+  </select>
+  <div class="invalid-feedback" th:if="${#fields.hasErrors('puntos')}" th:errors="*{puntos}"></div>
+</div>
+			
+
+			<div class="mb-3">
+				<label for="fechaGuia" class="form-label">Fecha de Ingreso : </label> <input type="date" id="fechaGuia"
+					placeholder="Digite la fecha" class="form-control"
+					th:field="*{fechaGuia}">
+				<div class="invalid-feedback"
+					th:if="${#fields.hasErrors('fechaGuia')}"
+					th:errors="*{fechaGuia}"></div>
+			</div>
+			
+			<div class="mb-3">
+  <label for="precioGuia" class="form-label">Precio:</label>
+  <input type="text" id="precioGuia"
+    placeholder="Colocar el Precio Ejemplo: S/ 1000 o S/ 1000,00"
+    class="form-control"
+    th:field="*{precioGuia}"
+    pattern="^S/\s?\d+(.\d{1,2})?$"
+    title="Ingrese un número válido o formato de precio (ejemplo: S/ 1000 o S/ 1000,00)">
+  <div class="invalid-feedback"
+    th:if="${#fields.hasErrors('precioGuia')}"
+    th:errors="*{precioGuia}"></div>
+</div>
+			
+			<div class="mb-3">
+				<label for="portada" class="form-label">Foto : </label> <input
+					type="file" name="portada" id="portad" class="form-control"
+					th:field="*{portada}">
+				<div class="invalid-feedback"
+					th:if="${#fields.hasErrors('portada')}" th:errors="*{portada}"></div>
+			</div>
+			
+			
+			<div class="mb-3">
+				<label for="lenguajes" class="form-label">Lenguajes : </label> <select
+					id="lenguajes" class="form-control" th:field="*{lenguajes}" multiple>
+					<option th:each="lenguaje : ${lenguajes}" th:value="${lenguaje.id}"
+						th:text="${lenguaje.lenguaje}"></option>
+				</select>
+				<div class="invalid-feedback"
+					th:if="${#fields.hasErrors('lenguajes')}" th:errors="*{lenguajes}"></div>
+			</div>
+
+			<div class="text-end">
+				<button type="submit" class="btn btn-primary">Guardar</button>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

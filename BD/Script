@@ -1,0 +1,99 @@
+drop database sistema_turismo;
+create database sistema_turismo;
+use sistema_turismo;
+
+select * from tb_lugares_turisticos;
+select * from Ciudad;
+select * from ciudad_turistica;
+
+
+select* from tb_guia;
+select * from Lenguaje;
+select * from lenguaje_guia;
+
+
+select* from tb_hospedaje;
+select * from Servicio;
+select * from servicio_hospedaje;
+
+select * from Nacionalidad;
+select * from Horario;
+select * from Puntos;
+
+
+INSERT INTO roles(nombre)VALUES('usuario');
+INSERT INTO roles(nombre)VALUES('admin');
+
+INSERT INTO usuarios(nombre, password, usuario)
+VALUES('carlos','$2a$12$hm25X9sajLfFKyQ2P649Re.VX0SFB0UINpY9cyaaVqHt5GOli110K','carlos');
+
+INSERT INTO usuarios(nombre, password, usuario)
+VALUES('roger','$2a$12$erkbch8VhnncVuTxdXsBkuZEGqRvcEI/BucqfCeUku.sIUXCNIBvC','roger');
+
+INSERT INTO usuarios_roles(usuario_id, rol_id)
+VALUES(1,1);
+
+INSERT INTO usuarios_roles(usuario_id, rol_id)
+VALUES(2,2);
+
+
+
+/*TABLA CIUDAD*/
+insert into Ciudad values(1,'Cusco');
+insert into Ciudad values(2,'Ica');
+insert into Ciudad values(3,'Nazca');
+insert into Ciudad values(4,'Huanuco');
+insert into Ciudad values(5,'Arequipa');
+insert into Ciudad values(6,'Puno');
+insert into Ciudad values(7,'Ancash');
+
+
+/*TABLA LENGUAJES*/
+insert into Lenguaje values(1,'Inglés');
+insert into Lenguaje values(2,'Portugués');
+insert into Lenguaje values(3,'Español');
+insert into Lenguaje values(4,'Francés');
+insert into Lenguaje values(5,'Alemán');
+insert into Lenguaje values(6,'Ruso');
+insert into Lenguaje values(7,'Mandarin');
+
+
+/*TABLA NACIONALIDAD*/
+insert into Nacionalidad values(1,'Colombiana');
+insert into Nacionalidad values(2,'Peruana');
+insert into Nacionalidad values(3,'Venezolana');
+insert into Nacionalidad values(4,'Argentina');
+insert into Nacionalidad values(5,'Chilena');
+
+
+
+/*TABLA HORARIOS*/
+insert into Horario values(1,'7 a.m. hasta 2 p.m.');
+insert into Horario values(2,'2 p.m. hasta 7 p.m.');
+insert into Horario values(3,'6 a.m. hasta 1 p.m.');
+insert into Horario values(4,'1 p.m. hasta 6 p.m.');
+insert into Horario values(5,'5 a.m. hasta 12 p.m.');
+insert into Horario values(6,'12 p.m. hasta 5 p.m.');
+insert into Horario values(7,'1 día');
+insert into Horario values(8,'2 días');
+insert into Horario values(9,'3 días');
+
+
+/*TABLA PUNTOS*/
+insert into Puntos values(1,'1 Pto');
+insert into Puntos values(2,'2 Ptos');
+insert into Puntos values(3,'3 Ptos');
+insert into Puntos values(4,'4 Ptos');
+insert into Puntos values(5,'5 Ptos');
+
+
+/*TABLA SERVICIOS*/
+insert into Servicio values(1,'Desayuno');
+insert into Servicio values(2,'Almuerzo');
+insert into Servicio values(3,'Cena');
+insert into Servicio values(4,'Transporte');
+insert into Servicio values(5,'Servicio de Spa');
+insert into Servicio values(6,'Servicio de Masajes');
+insert into Servicio values(7,'Servicio de Lavandería');
+insert into Servicio values(8,'Servicio de alquiler de equipos');
+-- esta es la bd
